@@ -1,0 +1,101 @@
+/*
+Pixal Arts and Entertainment - Animation Style Sheet
+Author: Will
+Date:   03/30/23
+
+bat=40-frames
+buttfly=34-frames
+fox=28-frames
+ */
+
+/* Transition Effects */
+nav#gameLinks a {
+    position: relative;
+    color: white;
+    transition: color 0.5s;
+}
+nav#gameLinks a:hover {
+    color: rgb(255, 194, 99);
+}
+nav#gameLinks a::after {
+    content:"";
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    width: 0%;
+    height: 8px;
+    background-image: linear-gradient(to right, rgb(237, 243, 71), rgb(188, 74, 0));
+    border-radius: 4px;
+    opacity: 0;
+    transition: width .5s, opacity .5s;
+}
+nav#gameLinks a:hover::after {
+    width: 100%;
+    opacity: 1;
+}
+/* Sprite Styles */
+div.sprite {
+    position: absolute;
+}
+div#bat {
+    width: 47px;
+    height: 50px;
+    background-image: url(paa_bat.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: cover;
+    top: 100px;
+    left: -50px;
+}
+div#butterfly {
+    width: 35px;
+    height: 35px;
+    background-image: url(paa_bfly.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: cover;
+    top:60px;
+    left: -50px;
+}
+div#fox {
+    width: 280px;
+    height: 260px;
+    background-image: url(paa_fox.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: cover;
+    bottom: 10px;
+    right: 10px;
+}
+/* Animation Styles */
+@keyframes playSprite {
+    100% {background-position: right center;}
+}
+@keyframes  flyRight {
+    25% {top: 150px;}
+    50% {top: 55px;}
+    65% {top: 120px;}
+    90% {top: 50px;}
+    100% {top: 80px; left:100%;}
+}
+
+
+div#fox {
+    animation-name: playSprite;
+    animation-duration: 3.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: steps(27);
+    animation-delay: 4s;
+}
+div#bat {
+    animation-name: flyRight, playSprite;
+    animation-duration: 8s, 2s;
+    animation-iteration-count: infinite, infinite;
+    animation-timing-function: linear, steps(39)
+}
+div#butterfly {
+    animation-name: flyRight, playSprite;
+    animation-duration: 6s, 1s;
+    animation-iteration-count: infinite, infinite ;
+    animation-timing-function: cubic-bezier(0, 1, .73, 0), steps(33)
+}
